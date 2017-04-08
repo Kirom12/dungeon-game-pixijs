@@ -1,7 +1,7 @@
 /**
- * Game Class
+ * Static Game Class
  */
 
 class Game {
-	
+
 }
