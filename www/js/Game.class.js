@@ -1,0 +1,7 @@
+/**
+ * Game Class
+ */
+
+class Game {
+	
+}
