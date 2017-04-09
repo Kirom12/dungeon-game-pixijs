@@ -31,6 +31,7 @@ class Game {
 
 		Game.assets;
 		Game.levels = {
+			current : 0,
 			info : [{
 				name : "Level 1",
 				startX : 400,
@@ -79,7 +80,7 @@ class Game {
 	 * Static play method
 	 */
 	static play() {
-
+		Game.player.move();
 	}
 
 	/**
@@ -87,8 +88,16 @@ class Game {
 	 */
 	static setup() {
 		//Load the first level
-		Game.loadLevel(0, Game.assets.mapLvl1.data);
+		Game.loadLevel(Game.levels.current, Game.assets.mapLvl1.data);
 
+		Game.player = new Player({
+			x : Game.levels.info[Game.levels.current].startX,
+			y : Game.levels.info[Game.levels.current].startY,
+			speed : 1,
+			scale : 0.5
+		});
+
+		console.log(Game.mapContainer);
 
 		Game.gameLoop();
 	}

@@ -1,121 +1,28 @@
+/**
+ * Character Class
+ */
 class Character {
-	constructor(sprit,name,attack,defense,life,x,y,vx,vy){
+	constructor(data, sprite) {
+		this.x = data.x;
+		this.y = data.y;
+		this.speed = data.speed;
+		this.scale = data.scale;
 
-		this.texture;
-		this.sprit = sprit;
-		this.name = name;
-		this.attack = attack;
-		this.defense = defense;
-		this.life = life;
-		this.x = x;
-		this.y = y;
-		this.vx = vx;
-		this.vy = vy;
+		this.vx = 0;
+		this.vy = 0;
+
+		this.sprite = sprite;
+
+		this.sprite.position.set(this.x-(this.sprite.width*this.scale), this.y-(this.sprite.height*this.scale));
+		this.sprite.scale.set(this.scale, this.scale);
+
+		Game.mapContainer.addChild(this.sprite);
 	}
 
-
-	/**
- 	* moving character
- 	* @param keyCode,velocity.x, velocity.y 
-    * @return int
- 	*/
-
-	move(keyCode,vx,vy){
-
-		var up;
-		var down;
-		var left;
-		var right;
-
-		switch(keyCode){
-
-			case "ArrowUp":
-				up = true;
-				
-			break;
-
-			case "ArrowDown":
-				down = true;
-
-			break;
-
-			case "ArrowLeft":
-				left = true;
-
-			break;
-
-			case "ArrowRight":
-				right = true;
-
-			break;
-
-		}
-
-		
-
-			if(up == true){
-
-				this.y -= vy;
-				console.log(this.y);
-			}
-			if(down == true){
-				this.y += vy;
-				console.log(this.y);
-
-			}
-			if(left == true){
-				this.x -= vx;
-				console.log(this.x);
-
-			}
-			if(right == true){
-				this.x += vx;
-				console.log(this.x);
-
-				
-			}
-
-
+	move() {
+		this.sprite.x += this.vx;
+		this.sprite.y += this.vy;
+		Game.mapContainer.x -= this.vx*Game.stage.scaleModifier;
+		Game.mapContainer.y -= this.vy*Game.stage.scaleModifier;
 	}
-
-
-	attack(){
-		console.log("move");
-	}
-	
-	hit(){
-		console.log("");
-	}
-
-	update(){
-		console.log("");
-	}
-
-		
 }
-
-
-class Player extends Character{
-	
-}
-
-
-class Enemy extends Character{
-	
-}
-
-	
-
-	// document.addEventListener('keydown',function(event){
-	// 		var hero = new Player("monSprite","ali",10,10,10,1,1,3,3);
-	// 		hero.move(event.key,hero.vx,hero.vy);
-
-			
-	// 	})
-
-	// document.addEventListener('keyup',function(event){
-	// 		up = false;
-	// 		down = false;
-	// 		left = false;
-	// 		right = false;
-	// 	})
