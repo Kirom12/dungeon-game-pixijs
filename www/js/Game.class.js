@@ -48,6 +48,7 @@ class Game {
 		}
 		Game.assetsUrls = [
 			{ name : "dungeon", url : "assets/tilesets/dungeon_tiles.png"},
+			{ name : "dungeon_new", url : "assets/tilesets/dungeon_tiles_new.png"},
 			{ name : "collision", url : "assets/tilesets/collision.png"},
 			{ name : "character", url : "assets/tilesets/character.png"},
 			{ name : "enemies", url : "assets/tilesets/enemies.png"}
@@ -109,15 +110,20 @@ class Game {
 	 *
 	 * @param int current index of the map
 	 * @param Object current map
+	 * @param bool use new tileset file
 	 */
-	static loadLevel(index, map) {
-		Game.mapContainer = getTiledMapContainer(
-			{
-				dungeon_tiles : Game.assets.dungeon.texture,
-				collision : Game.assets.collision.texture,
-			},
-			map
-		);
+	static loadLevel(index, map, newmap = true) {
+		let mapTiled = {};
+
+		if (newmap) {
+			mapTiled.dungeon_tiles_new = Game.assets.dungeon_new.texture;
+		} else {
+			mapTiled.dungeon_tiles = Game.assets.dungeon.texture;
+		}
+
+		mapTiled.collision = Game.assets.collision.texture;
+
+		Game.mapContainer = getTiledMapContainer(mapTiled, map);
 
 		Game.layers = {
 			collision : Game.mapContainer.getChildByName("collision")
