@@ -52,6 +52,7 @@ class Game {
 			{ name : "dungeon_new", url : "assets/tilesets/dungeon_tiles_new.png"},
 			{ name : "collision", url : "assets/tilesets/collision.png"},
 			{ name : "character", url : "assets/tilesets/character.png"},
+			{ name : "character_test", url : "assets/tilesets/char-test.png"},
 			{ name : "enemies", url : "assets/tilesets/enemies.png"}
 		]
 
@@ -80,6 +81,7 @@ class Game {
 	 * Static play method
 	 */
 	static play() {
+		Game.player.update();
 		Game.player.move();
 	}
 
@@ -97,7 +99,7 @@ class Game {
 			scale : 0.5
 		});
 
-		console.log(Game.mapContainer);
+		//console.log(Game.mapContainer);
 
 		Game.gameLoop();
 	}
@@ -143,8 +145,6 @@ class Game {
 
 		//Set scale and screen position
 		Game.mapContainer.scale.set(Game.stage.scaleModifier, Game.stage.scaleModifier)
-		Game.mapContainer.x = -(Game.levels.info[index].startX*Game.stage.scaleModifier)+(Game.stage.width/2);
-		Game.mapContainer.y = -(Game.levels.info[index].startY*Game.stage.scaleModifier)+(Game.stage.height/2);
 
 		Game.stage.container.addChild(Game.mapContainer);
 	}

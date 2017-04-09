@@ -17,6 +17,8 @@ class Character {
 		this.sprite.scale.set(this.scale, this.scale);
 
 		Game.mapContainer.addChild(this.sprite);
+
+		console.log(this.sprite.width);
 	}
 
 	move() {
@@ -24,5 +26,9 @@ class Character {
 		this.sprite.y += this.vy;
 		Game.mapContainer.x -= this.vx*Game.stage.scaleModifier;
 		Game.mapContainer.y -= this.vy*Game.stage.scaleModifier;
+	}
+
+	update() {
+		console.log("update");
 	}
 }

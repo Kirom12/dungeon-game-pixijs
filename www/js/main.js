@@ -1,4 +1,4 @@
 /**
  * Javascript main file
  */
- Game.init();
+Game.init();
